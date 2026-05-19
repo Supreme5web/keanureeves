@@ -1,0 +1,1890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Buy Tickets — Keanu Reeves Official</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C96A;
+      --gold-pale: #F5E6B8;
+      --gold-dim: rgba(201,168,76,.12);
+      --black: #030303;
+      --dark: #070707;
+      --mid: #101010;
+      --mid2: #161616;
+      --panel: #0C0C0C;
+      --text: #EAEAEA;
+      --muted: #777;
+      --muted2: #444;
+      --success: #7ecb9e;
+      --error: #e07070;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Noise */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: .02;
+      pointer-events: none;
+      z-index: 9000;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: sticky; top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 64px;
+      background: rgba(3,3,3,.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(201,168,76,.1);
+    }
+
+    .nav-logo-main {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      line-height: 1;
+      text-decoration: none;
+    }
+
+    .nav-logo-sub {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: .45rem;
+      letter-spacing: .55em;
+      color: rgba(255,255,255,.35);
+      font-weight: 300;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: .6rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .nav-back:hover { color: var(--gold); }
+    .nav-back svg { width: 14px; height: 14px; }
+
+    /* ── TOP ACCENT ── */
+    .top-bar {
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold) 30%, var(--gold-light) 50%, var(--gold) 70%, transparent);
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 70px 64px 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-header-glow {
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse, rgba(201,168,76,.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .page-eyebrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .eyebrow-line { width: 30px; height: 1px; background: var(--gold); }
+    .eyebrow-text {
+      font-size: .55rem;
+      letter-spacing: .55em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 300;
+      color: #fff;
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+    .page-title em { font-style: italic; color: var(--gold-light); }
+
+    .page-sub {
+      font-size: .7rem;
+      color: var(--muted);
+      letter-spacing: .06em;
+    }
+
+    /* ── PROGRESS STEPS ── */
+    .progress-wrap {
+      padding: 0 64px 50px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .progress {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+    }
+
+    .step-circle {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--muted2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+      color: var(--muted);
+      background: var(--dark);
+      transition: all .4s;
+      z-index: 1;
+    }
+
+    .step.active .step-circle {
+      border-color: var(--gold);
+      color: var(--black);
+      background: var(--gold);
+      box-shadow: 0 0 20px rgba(201,168,76,.3);
+    }
+
+    .step.done .step-circle {
+      border-color: var(--gold);
+      background: var(--gold-dim);
+      color: var(--gold);
+    }
+
+    .step-label {
+      font-size: .5rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--muted2);
+      transition: color .4s;
+      white-space: nowrap;
+    }
+
+    .step.active .step-label,
+    .step.done .step-label { color: var(--gold); }
+
+    .step-connector {
+      width: 80px;
+      height: 1px;
+      background: var(--muted2);
+      margin-bottom: 22px;
+      transition: background .4s;
+      flex-shrink: 0;
+    }
+
+    .step-connector.done { background: var(--gold); }
+
+    /* ── MAIN LAYOUT ── */
+    .main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 64px 120px;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 32px;
+      align-items: start;
+    }
+
+    /* ── PANELS (steps) ── */
+    .panel {
+      display: none;
+    }
+    .panel.active { display: block; }
+
+    .panel-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      font-weight: 300;
+      color: #fff;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(201,168,76,.12);
+    }
+    .panel-title em { font-style: italic; color: var(--gold-light); }
+
+    /* ── EVENT CARDS ── */
+    .events-list {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .event-card {
+      background: var(--mid);
+      border: 1px solid rgba(255,255,255,.04);
+      padding: 28px 32px;
+      display: grid;
+      grid-template-columns: 72px 1px 1fr auto;
+      align-items: center;
+      gap: 28px;
+      cursor: pointer;
+      transition: all .3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .event-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--gold), var(--gold-light));
+      transform: scaleY(0);
+      transition: transform .35s cubic-bezier(.22,1,.36,1);
+    }
+
+    .event-card:hover,
+    .event-card.selected {
+      background: var(--mid2);
+      border-color: rgba(201,168,76,.2);
+    }
+
+    .event-card:hover::before,
+    .event-card.selected::before { transform: scaleY(1); }
+
+    .event-card.sold-out { opacity: .45; cursor: not-allowed; }
+    .event-card.sold-out::before { display: none; }
+
+    .event-date {
+      text-align: center;
+    }
+
+    .event-date-day {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .event-date-month {
+      font-size: .48rem;
+      letter-spacing: .4em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .event-divider {
+      width: 1px;
+      height: 52px;
+      background: rgba(201,168,76,.15);
+    }
+
+    .event-info {}
+
+    .event-venue {
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+
+    .event-location {
+      font-size: .64rem;
+      color: var(--muted);
+      letter-spacing: .05em;
+      margin-bottom: 10px;
+    }
+
+    .event-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: .48rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+
+    .tag-vip    { background: rgba(201,168,76,.1); color: var(--gold); border: 1px solid rgba(201,168,76,.25); }
+    .tag-ga     { background: rgba(255,255,255,.05); color: rgba(255,255,255,.5); border: 1px solid rgba(255,255,255,.1); }
+    .tag-sold   { background: rgba(224,112,112,.08); color: var(--error); border: 1px solid rgba(224,112,112,.2); }
+
+    .event-right {
+      text-align: right;
+    }
+
+    .event-price-from {
+      font-size: .5rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .event-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--gold-light);
+      line-height: 1;
+    }
+
+    .event-select-btn {
+      margin-top: 10px;
+      font-size: .5rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding: 6px 14px;
+      border: 1px solid rgba(201,168,76,.3);
+      background: transparent;
+      cursor: pointer;
+      transition: all .25s;
+      white-space: nowrap;
+    }
+
+    .event-card:hover .event-select-btn,
+    .event-card.selected .event-select-btn {
+      background: var(--gold);
+      color: var(--black);
+      border-color: var(--gold);
+    }
+
+    .sold-out-badge {
+      font-size: .5rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--error);
+      padding: 6px 14px;
+      border: 1px solid rgba(224,112,112,.25);
+    }
+
+    /* ── TICKET TYPES ── */
+    .ticket-types {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      margin-bottom: 32px;
+    }
+
+    .ticket-type {
+      background: var(--mid);
+      border: 1px solid rgba(255,255,255,.04);
+      padding: 26px 28px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 20px;
+      cursor: pointer;
+      transition: all .3s;
+      position: relative;
+    }
+
+    .ticket-type::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s;
+    }
+
+    .ticket-type:hover,
+    .ticket-type.selected {
+      background: var(--mid2);
+      border-color: rgba(201,168,76,.2);
+    }
+
+    .ticket-type:hover::after,
+    .ticket-type.selected::after { transform: scaleX(1); }
+
+    .tt-name {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+
+    .tt-desc {
+      font-size: .65rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+
+    .tt-perks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tt-perk {
+      font-size: .48rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      background: rgba(201,168,76,.07);
+      color: rgba(201,168,76,.7);
+      border: 1px solid rgba(201,168,76,.15);
+    }
+
+    .tt-right { text-align: right; }
+
+    .tt-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 300;
+      color: var(--gold-light);
+      white-space: nowrap;
+    }
+
+    .tt-avail {
+      font-size: .5rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* Quantity */
+    .qty-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 0;
+      border-top: 1px solid rgba(201,168,76,.08);
+    }
+
+    .qty-label {
+      font-size: .65rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .qty-btn {
+      width: 40px; height: 40px;
+      background: var(--mid);
+      border: 1px solid rgba(201,168,76,.2);
+      color: var(--gold);
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .2s;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .qty-btn:hover { background: rgba(201,168,76,.1); }
+
+    .qty-val {
+      width: 56px; height: 40px;
+      background: var(--dark);
+      border-top: 1px solid rgba(201,168,76,.2);
+      border-bottom: 1px solid rgba(201,168,76,.2);
+      border-left: none; border-right: none;
+      color: #fff;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── FORM ── */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+      margin-bottom: 3px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-field.full { grid-column: 1 / -1; }
+
+    .form-label {
+      font-size: .55rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .form-input,
+    .form-select {
+      background: var(--mid);
+      border: 1px solid rgba(255,255,255,.08);
+      padding: 14px 18px;
+      color: var(--text);
+      font-family: 'Montserrat', sans-serif;
+      font-size: .72rem;
+      outline: none;
+      transition: border-color .25s, box-shadow .25s;
+      width: 100%;
+      -webkit-appearance: none;
+    }
+
+    .form-input::placeholder { color: var(--muted2); }
+
+    .form-input:focus,
+    .form-select:focus {
+      border-color: rgba(201,168,76,.4);
+      box-shadow: 0 0 0 3px rgba(201,168,76,.07);
+    }
+
+    .form-input.error { border-color: rgba(224,112,112,.5); }
+
+    .form-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23777' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+
+    .form-select option { background: var(--mid); color: var(--text); }
+
+    .form-section-title {
+      font-size: .58rem;
+      letter-spacing: .4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding: 22px 0 14px;
+      border-bottom: 1px solid rgba(201,168,76,.1);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .form-section-title svg { width: 14px; height: 14px; }
+
+    /* Card input row */
+    .card-row {
+      display: grid;
+      grid-template-columns: 1fr 100px 80px;
+      gap: 3px;
+      margin-bottom: 3px;
+    }
+
+    /* Payment icons */
+    .pay-icons {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .pay-icon {
+      width: 46px; height: 28px;
+      background: var(--mid);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .45rem;
+      letter-spacing: .06em;
+      color: var(--muted);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .pay-icon.visa   { color: #1a75ff; }
+    .pay-icon.mc     { background: linear-gradient(90deg, #eb001b 40%, #ff5f00 60%, #f79e1b 100%); color: transparent; font-size: 0; position: relative; }
+    .pay-icon.mc::before,
+    .pay-icon.mc::after {
+      content: '';
+      position: absolute;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+    }
+    .pay-icon.mc::before { background: #eb001b; left: 8px; }
+    .pay-icon.mc::after  { background: #f79e1b; right: 8px; opacity: .9; }
+    .pay-icon.amex  { color: #2777b6; }
+
+    /* Secure badge */
+    .secure-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .58rem;
+      color: var(--muted);
+      letter-spacing: .08em;
+      padding: 14px 0;
+    }
+    .secure-badge svg { color: var(--success); width: 14px; height: 14px; }
+
+    /* ── ORDER SUMMARY SIDEBAR ── */
+    .sidebar {
+      position: sticky;
+      top: 88px;
+    }
+
+    .summary-box {
+      background: var(--panel);
+      border: 1px solid rgba(201,168,76,.12);
+      padding: 32px;
+      margin-bottom: 3px;
+    }
+
+    .summary-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 300;
+      color: #fff;
+      letter-spacing: .05em;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(201,168,76,.1);
+    }
+
+    .summary-event {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+
+    .summary-event-date {
+      font-size: .55rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .summary-event-venue {
+      font-size: .78rem;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: .05em;
+      margin-bottom: 3px;
+    }
+
+    .summary-event-loc {
+      font-size: .62rem;
+      color: var(--muted);
+    }
+
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      font-size: .65rem;
+    }
+
+    .summary-line-label { color: var(--muted); }
+    .summary-line-val   { color: #fff; text-align: right; }
+
+    .summary-divider {
+      height: 1px;
+      background: rgba(201,168,76,.08);
+      margin: 16px 0;
+    }
+
+    .summary-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .summary-total-label {
+      font-size: .6rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .summary-total-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--gold-light);
+    }
+
+    .summary-empty {
+      font-size: .65rem;
+      color: var(--muted2);
+      font-style: italic;
+      text-align: center;
+      padding: 12px 0;
+    }
+
+    /* Guarantee box */
+    .guarantee-box {
+      background: var(--panel);
+      border: 1px solid rgba(201,168,76,.08);
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .guarantee-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .guarantee-icon {
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .guarantee-text {
+      font-size: .62rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .guarantee-text strong { color: rgba(255,255,255,.7); font-weight: 600; }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+      background-size: 200%;
+      color: var(--black);
+      font-family: 'Montserrat', sans-serif;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      padding: 18px 40px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      transition: all .3s;
+      box-shadow: 0 8px 32px rgba(201,168,76,.25);
+      margin-top: 24px;
+    }
+
+    .btn-primary:hover {
+      background-position: right center;
+      box-shadow: 0 14px 48px rgba(201,168,76,.45);
+      transform: translateY(-2px);
+    }
+
+    .btn-primary:disabled {
+      opacity: .4;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--muted);
+      font-family: 'Montserrat', sans-serif;
+      font-size: .58rem;
+      font-weight: 600;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      padding: 14px 0;
+      border: none;
+      cursor: pointer;
+      transition: color .2s;
+      margin-top: 12px;
+    }
+
+    .btn-back:hover { color: var(--gold); }
+    .btn-back svg { width: 12px; height: 12px; }
+
+    /* ── CONFIRMATION ── */
+    .confirm-panel {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 80px 40px;
+      display: none;
+    }
+
+    .confirm-panel.active { display: block; }
+
+    .confirm-check {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 32px;
+      box-shadow: 0 0 60px rgba(201,168,76,.35);
+      animation: popIn .5s cubic-bezier(.22,1,.36,1) both;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(.4); opacity: 0; }
+      to   { transform: scale(1);  opacity: 1; }
+    }
+
+    .confirm-check svg { width: 36px; height: 36px; color: var(--black); }
+
+    .confirm-eyebrow {
+      font-size: .55rem;
+      letter-spacing: .5em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .confirm-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 300;
+      color: #fff;
+      margin-bottom: 14px;
+    }
+    .confirm-title em { font-style: italic; color: var(--gold-light); }
+
+    .confirm-sub {
+      font-size: .72rem;
+      color: var(--muted);
+      line-height: 1.9;
+      max-width: 480px;
+      margin: 0 auto 48px;
+    }
+
+    .confirm-ref {
+      display: inline-block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 300;
+      letter-spacing: .3em;
+      color: var(--gold);
+      background: rgba(201,168,76,.07);
+      border: 1px solid rgba(201,168,76,.2);
+      padding: 16px 40px;
+      margin-bottom: 48px;
+    }
+
+    .confirm-details {
+      display: inline-grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2px;
+      max-width: 640px;
+      width: 100%;
+      margin-bottom: 48px;
+      text-align: left;
+    }
+
+    .confirm-detail {
+      background: var(--mid);
+      padding: 22px 24px;
+    }
+
+    .confirm-detail-label {
+      font-size: .5rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .confirm-detail-val {
+      font-size: .78rem;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: .04em;
+    }
+
+    .confirm-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-conf-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--black);
+      font-family: 'Montserrat', sans-serif;
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      padding: 16px 38px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all .25s;
+      box-shadow: 0 8px 28px rgba(201,168,76,.3);
+    }
+
+    .btn-conf-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 40px rgba(201,168,76,.45);
+    }
+
+    .btn-conf-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: transparent;
+      color: var(--gold);
+      font-family: 'Montserrat', sans-serif;
+      font-size: .62rem;
+      font-weight: 600;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      padding: 15px 38px;
+      border: 1px solid rgba(201,168,76,.3);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all .25s;
+    }
+
+    .btn-conf-outline:hover {
+      background: rgba(201,168,76,.06);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--dark);
+      border-top: 1px solid rgba(201,168,76,.07);
+      padding: 28px 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: .9rem;
+      letter-spacing: .28em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .footer-copy {
+      font-size: .52rem;
+      letter-spacing: .12em;
+      color: var(--muted2);
+    }
+
+    /* ── UTILS ── */
+    .mt-16 { margin-top: 16px; }
+    .mt-24 { margin-top: 24px; }
+
+    .field-error {
+      font-size: .55rem;
+      color: var(--error);
+      letter-spacing: .08em;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .field-error.show { display: block; }
+
+    /* Checkbox */
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    .custom-check {
+      width: 18px; height: 18px;
+      border: 1px solid rgba(201,168,76,.3);
+      background: var(--mid);
+      flex-shrink: 0;
+      margin-top: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .2s;
+    }
+
+    input[type="checkbox"]:checked + .custom-check {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+
+    input[type="checkbox"] { display: none; }
+
+    .checkbox-text {
+      font-size: .62rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .checkbox-text a { color: var(--gold); text-decoration: none; }
+
+    /* loading spinner */
+    .spinner {
+      width: 18px; height: 18px;
+      border: 2px solid rgba(0,0,0,.3);
+      border-top-color: var(--black);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      display: none;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .btn-primary.loading .spinner { display: block; }
+    .btn-primary.loading .btn-text { display: none; }
+
+    @media (max-width: 1024px) {
+      .main { grid-template-columns: 1fr; padding: 0 32px 80px; }
+      .sidebar { position: static; }
+    }
+
+    @media (max-width: 640px) {
+      .nav { padding: 18px 24px; }
+      .page-header { padding: 48px 24px 36px; }
+      .progress-wrap { padding: 0 24px 36px; overflow-x: auto; }
+      .step-connector { width: 40px; }
+      .main { padding: 0 20px 60px; }
+      .event-card { grid-template-columns: 56px 1px 1fr; padding: 20px; gap: 16px; }
+      .event-right { display: none; }
+      .card-row { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .confirm-details { grid-template-columns: 1fr; }
+      .footer { padding: 24px; flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar"></div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="keanu-management.html" style="text-decoration:none;">
+      <span class="nav-logo-main">Keanu Reeves</span>
+      <span class="nav-logo-sub">Official Management Group</span>
+    </a>
+    <a href="keanu-management.html" class="nav-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      Back to Site
+    </a>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-header-glow"></div>
+    <div class="page-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Official Box Office</span>
+      <div class="eyebrow-line"></div>
+    </div>
+    <h1 class="page-title">Buy <em>Tickets</em></h1>
+    <p class="page-sub">Secure · Official · Instant Confirmation</p>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap">
+    <div class="progress" id="progressBar">
+      <div class="step active" id="stepEl1">
+        <div class="step-circle">01</div>
+        <div class="step-label">Select Event</div>
+      </div>
+      <div class="step-connector" id="conn1"></div>
+      <div class="step" id="stepEl2">
+        <div class="step-circle">02</div>
+        <div class="step-label">Ticket Type</div>
+      </div>
+      <div class="step-connector" id="conn2"></div>
+      <div class="step" id="stepEl3">
+        <div class="step-circle">03</div>
+        <div class="step-label">Your Details</div>
+      </div>
+      <div class="step-connector" id="conn3"></div>
+      <div class="step" id="stepEl4">
+        <div class="step-circle">04</div>
+        <div class="step-label">Payment</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main" id="mainGrid">
+
+    <!-- ─── LEFT COLUMN ─── -->
+    <div id="leftCol">
+
+      <!-- STEP 1: Select Event -->
+      <div class="panel active" id="step1">
+        <h2 class="panel-title">Select an <em>Event</em></h2>
+
+        <div class="events-list">
+
+          <div class="event-card" data-id="1" data-venue="Madison Square Garden" data-location="New York, NY" data-date="Jun 14" data-price="149">
+            <div class="event-date">
+              <div class="event-date-day">14</div>
+              <div class="event-date-month">Jun 2026</div>
+            </div>
+            <div class="event-divider"></div>
+            <div class="event-info">
+              <div class="event-venue">Madison Square Garden</div>
+              <div class="event-location">New York, NY · United States</div>
+              <div class="event-tags">
+                <span class="tag tag-vip">VIP Available</span>
+                <span class="tag tag-ga">General Admission</span>
+              </div>
+            </div>
+            <div class="event-right">
+              <div class="event-price-from">From</div>
+              <div class="event-price">$149</div>
+              <button class="event-select-btn">Select</button>
+            </div>
+          </div>
+
+          <div class="event-card" data-id="2" data-venue="The O2 Arena" data-location="London, UK" data-date="Jun 22" data-price="129">
+            <div class="event-date">
+              <div class="event-date-day">22</div>
+              <div class="event-date-month">Jun 2026</div>
+            </div>
+            <div class="event-divider"></div>
+            <div class="event-info">
+              <div class="event-venue">The O2 Arena</div>
+              <div class="event-location">London · United Kingdom</div>
+              <div class="event-tags">
+                <span class="tag tag-vip">VIP Available</span>
+                <span class="tag tag-ga">General Admission</span>
+              </div>
+            </div>
+            <div class="event-right">
+              <div class="event-price-from">From</div>
+              <div class="event-price">$129</div>
+              <button class="event-select-btn">Select</button>
+            </div>
+          </div>
+
+          <div class="event-card" data-id="3" data-venue="Accor Arena" data-location="Paris, France" data-date="Jul 05" data-price="119">
+            <div class="event-date">
+              <div class="event-date-day">05</div>
+              <div class="event-date-month">Jul 2026</div>
+            </div>
+            <div class="event-divider"></div>
+            <div class="event-info">
+              <div class="event-venue">Accor Arena</div>
+              <div class="event-location">Paris · France</div>
+              <div class="event-tags">
+                <span class="tag tag-vip">VIP Available</span>
+                <span class="tag tag-ga">General Admission</span>
+              </div>
+            </div>
+            <div class="event-right">
+              <div class="event-price-from">From</div>
+              <div class="event-price">$119</div>
+              <button class="event-select-btn">Select</button>
+            </div>
+          </div>
+
+          <div class="event-card sold-out" data-id="4">
+            <div class="event-date">
+              <div class="event-date-day">19</div>
+              <div class="event-date-month">Jul 2026</div>
+            </div>
+            <div class="event-divider"></div>
+            <div class="event-info">
+              <div class="event-venue">Crypto.com Arena</div>
+              <div class="event-location">Los Angeles, CA · United States</div>
+              <div class="event-tags">
+                <span class="tag tag-sold">Sold Out</span>
+              </div>
+            </div>
+            <div class="event-right">
+              <div class="sold-out-badge">Sold Out</div>
+            </div>
+          </div>
+
+        </div>
+
+        <button class="btn-primary" id="btn1" disabled>
+          <span class="btn-text">
+            Continue to Ticket Type
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </span>
+          <div class="spinner"></div>
+        </button>
+      </div>
+
+      <!-- STEP 2: Ticket Type -->
+      <div class="panel" id="step2">
+        <h2 class="panel-title">Choose <em>Ticket Type</em></h2>
+
+        <div class="ticket-types">
+
+          <div class="ticket-type" data-type="ga" data-name="General Admission" data-price="149">
+            <div>
+              <div class="tt-name">General Admission</div>
+              <div class="tt-desc">Full access to the event. Standing area with excellent stage views from the main floor.</div>
+              <div class="tt-perks">
+                <span class="tt-perk">Floor Access</span>
+                <span class="tt-perk">Event Programme</span>
+              </div>
+            </div>
+            <div class="tt-right">
+              <div class="tt-price" id="gaPrice">$149</div>
+              <div class="tt-avail">Seats available</div>
+            </div>
+          </div>
+
+          <div class="ticket-type" data-type="vip" data-name="VIP Gold" data-price="349">
+            <div>
+              <div class="tt-name">VIP Gold</div>
+              <div class="tt-desc">Premium seating, exclusive lounge access, and a signed programme delivered to your seat.</div>
+              <div class="tt-perks">
+                <span class="tt-perk">Reserved Seating</span>
+                <span class="tt-perk">VIP Lounge</span>
+                <span class="tt-perk">Signed Programme</span>
+                <span class="tt-perk">Complimentary Drink</span>
+              </div>
+            </div>
+            <div class="tt-right">
+              <div class="tt-price">$349</div>
+              <div class="tt-avail">Limited seats</div>
+            </div>
+          </div>
+
+          <div class="ticket-type" data-type="platinum" data-name="Platinum Backstage" data-price="749">
+            <div>
+              <div class="tt-name">Platinum Backstage</div>
+              <div class="tt-desc">The ultimate experience — front-row seating, meet & greet, signed merch, and exclusive backstage access.</div>
+              <div class="tt-perks">
+                <span class="tt-perk">Front Row</span>
+                <span class="tt-perk">Meet & Greet</span>
+                <span class="tt-perk">Backstage Pass</span>
+                <span class="tt-perk">Signed Merch</span>
+                <span class="tt-perk">Photo Opportunity</span>
+              </div>
+            </div>
+            <div class="tt-right">
+              <div class="tt-price">$749</div>
+              <div class="tt-avail">Very limited</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="qty-row">
+          <span class="qty-label">Number of Tickets</span>
+          <div class="qty-controls">
+            <button class="qty-btn" id="qtyMinus">−</button>
+            <div class="qty-val" id="qtyVal">1</div>
+            <button class="qty-btn" id="qtyPlus">+</button>
+          </div>
+        </div>
+
+        <button class="btn-primary" id="btn2" disabled>
+          <span class="btn-text">
+            Continue to Your Details
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </span>
+          <div class="spinner"></div>
+        </button>
+        <button class="btn-back" onclick="goStep(1)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Back
+        </button>
+      </div>
+
+      <!-- STEP 3: Personal Details -->
+      <div class="panel" id="step3">
+        <h2 class="panel-title">Your <em>Details</em></h2>
+
+        <div class="form-section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 3a4 4 0 100 8 4 4 0 000-8z"/></svg>
+          Personal Information
+        </div>
+
+        <div class="form-grid" id="personalGrid">
+          <div class="form-field">
+            <label class="form-label">First Name</label>
+            <input class="form-input" id="firstName" type="text" placeholder="Keanu" autocomplete="given-name"/>
+            <span class="field-error" id="firstNameErr">Required field</span>
+          </div>
+          <div class="form-field">
+            <label class="form-label">Last Name</label>
+            <input class="form-input" id="lastName" type="text" placeholder="Fan" autocomplete="family-name"/>
+            <span class="field-error" id="lastNameErr">Required field</span>
+          </div>
+          <div class="form-field">
+            <label class="form-label">Email Address</label>
+            <input class="form-input" id="email" type="email" placeholder="you@example.com" autocomplete="email"/>
+            <span class="field-error" id="emailErr">Enter a valid email</span>
+          </div>
+          <div class="form-field">
+            <label class="form-label">Phone Number</label>
+            <input class="form-input" id="phone" type="tel" placeholder="+1 234 567 8900" autocomplete="tel"/>
+            <span class="field-error" id="phoneErr">Required field</span>
+          </div>
+          <div class="form-field full">
+            <label class="form-label">Country</label>
+            <select class="form-select" id="country">
+              <option value="">Select your country...</option>
+              <option>United States</option>
+              <option>United Kingdom</option>
+              <option>Nigeria</option>
+              <option>Canada</option>
+              <option>Australia</option>
+              <option>Germany</option>
+              <option>France</option>
+              <option>Japan</option>
+              <option>Other</option>
+            </select>
+            <span class="field-error" id="countryErr">Please select a country</span>
+          </div>
+        </div>
+
+        <label class="checkbox-row mt-16">
+          <input type="checkbox" id="newsCheck"/>
+          <div class="custom-check">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#030303" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="checkbox-text">I'd like to receive exclusive updates, early access offers, and news from the Keanu Reeves Management Group.</span>
+        </label>
+
+        <button class="btn-primary" id="btn3">
+          <span class="btn-text">
+            Continue to Payment
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </span>
+          <div class="spinner"></div>
+        </button>
+        <button class="btn-back" onclick="goStep(2)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Back
+        </button>
+      </div>
+
+      <!-- STEP 4: Payment -->
+      <div class="panel" id="step4">
+        <h2 class="panel-title">Secure <em>Payment</em></h2>
+
+        <div class="form-section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+          Card Details
+        </div>
+
+        <div class="pay-icons">
+          <div class="pay-icon visa">VISA</div>
+          <div class="pay-icon mc"></div>
+          <div class="pay-icon amex">AMEX</div>
+          <div class="pay-icon">DISC</div>
+        </div>
+
+        <div class="form-field" style="margin-bottom:3px;">
+          <label class="form-label">Cardholder Name</label>
+          <input class="form-input" id="cardName" type="text" placeholder="Name as it appears on card" autocomplete="cc-name"/>
+          <span class="field-error" id="cardNameErr">Required field</span>
+        </div>
+
+        <div class="form-field mt-16" style="margin-bottom:3px;">
+          <label class="form-label">Card Number</label>
+          <input class="form-input" id="cardNum" type="text" placeholder="1234  5678  9012  3456" maxlength="19" autocomplete="cc-number"/>
+          <span class="field-error" id="cardNumErr">Enter a valid 16-digit card number</span>
+        </div>
+
+        <div class="card-row mt-16">
+          <div class="form-field">
+            <label class="form-label">Expiry Date</label>
+            <input class="form-input" id="cardExp" type="text" placeholder="MM / YY" maxlength="7" autocomplete="cc-exp"/>
+            <span class="field-error" id="cardExpErr">Invalid date</span>
+          </div>
+          <div class="form-field">
+            <label class="form-label">CVV</label>
+            <input class="form-input" id="cardCvv" type="text" placeholder="•••" maxlength="4" autocomplete="cc-csc"/>
+            <span class="field-error" id="cardCvvErr">Invalid</span>
+          </div>
+        </div>
+
+        <div class="secure-badge mt-24">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          256-bit SSL encryption · Your payment details are never stored
+        </div>
+
+        <label class="checkbox-row">
+          <input type="checkbox" id="termsCheck"/>
+          <div class="custom-check">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#030303" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="checkbox-text">I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Refund Policy</a>. All ticket sales are final except where required by law.</span>
+        </label>
+
+        <button class="btn-primary" id="btn4">
+          <span class="btn-text" id="payBtnText">
+            Complete Purchase
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </span>
+          <div class="spinner"></div>
+        </button>
+        <button class="btn-back" onclick="goStep(3)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Back
+        </button>
+      </div>
+
+    </div><!-- /leftCol -->
+
+    <!-- ─── SIDEBAR ─── -->
+    <div class="sidebar" id="sidebar">
+
+      <div class="summary-box">
+        <div class="summary-title">Order Summary</div>
+
+        <div class="summary-event" id="summaryEvent">
+          <div class="summary-empty">Select an event to begin.</div>
+        </div>
+
+        <div id="summaryLines"></div>
+
+        <div class="summary-divider"></div>
+        <div class="summary-total-row">
+          <span class="summary-total-label">Total</span>
+          <span class="summary-total-val" id="summaryTotal">—</span>
+        </div>
+      </div>
+
+      <div class="guarantee-box">
+        <div class="guarantee-item">
+          <div class="guarantee-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="guarantee-text"><strong>Official Tickets</strong> — Purchased directly from the management. 100% authentic.</div>
+        </div>
+        <div class="guarantee-item">
+          <div class="guarantee-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.7A2 2 0 012 .86h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2.02z"/></svg>
+          </div>
+          <div class="guarantee-text"><strong>Instant Confirmation</strong> — Tickets emailed to you immediately after purchase.</div>
+        </div>
+        <div class="guarantee-item">
+          <div class="guarantee-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <div class="guarantee-text"><strong>Fan Card Priority</strong> — Fan Card holders get first access to new dates before public sale.</div>
+        </div>
+      </div>
+
+    </div><!-- /sidebar -->
+
+    <!-- CONFIRMATION (full width) -->
+    <div class="confirm-panel" id="confirmPanel">
+      <div class="confirm-check">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <p class="confirm-eyebrow">Booking Confirmed</p>
+      <h2 class="confirm-title">You're <em>Going!</em></h2>
+      <p class="confirm-sub">Your tickets have been booked and a confirmation has been sent to your email. Bring your booking reference or QR code to the venue.</p>
+      <div class="confirm-ref" id="confirmRef">KR-000000</div>
+      <div class="confirm-details" id="confirmDetails"></div>
+      <div class="confirm-actions">
+        <button class="btn-conf-primary" onclick="window.print()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Print / Save Tickets
+        </button>
+        <a href="keanu-management.html" class="btn-conf-outline">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Back to Main Site
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /main -->
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">Keanu Reeves Management</div>
+    <div class="footer-copy">© 2026 Keanu Reeves Management Group · All Rights Reserved</div>
+  </footer>
+
+  <script>
+    /* ── STATE ── */
+    const state = {
+      step: 1,
+      event: null,
+      ticketType: null,
+      qty: 1,
+      firstName: '', lastName: '', email: '', phone: '', country: ''
+    };
+
+    /* ── EVENTS DATA ── */
+    const events = {
+      1: { venue: 'Madison Square Garden', location: 'New York, NY', date: 'Jun 14, 2026', basePrice: 149 },
+      2: { venue: 'The O2 Arena',           location: 'London, UK',   date: 'Jun 22, 2026', basePrice: 129 },
+      3: { venue: 'Accor Arena',            location: 'Paris, France', date: 'Jul 05, 2026', basePrice: 119 }
+    };
+
+    const ticketPrices = { ga: 0, vip: 200, platinum: 600 };
+
+    /* ── STEP NAVIGATION ── */
+    function goStep(n) {
+      // hide current
+      document.getElementById('step' + state.step)?.classList.remove('active');
+
+      state.step = n;
+
+      // show new
+      const panel = document.getElementById('step' + n);
+      if (panel) {
+        panel.classList.add('active');
+        document.getElementById('mainGrid').style.gridTemplateColumns = '';
+        document.getElementById('sidebar').style.display = '';
+        document.getElementById('confirmPanel').classList.remove('active');
+      }
+
+      // progress
+      for (let i = 1; i <= 4; i++) {
+        const el = document.getElementById('stepEl' + i);
+        el.classList.remove('active', 'done');
+        if (i < n)  el.classList.add('done');
+        if (i === n) el.classList.add('active');
+      }
+      for (let i = 1; i <= 3; i++) {
+        const c = document.getElementById('conn' + i);
+        c.classList.toggle('done', i < n);
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* ── STEP 1: EVENT SELECTION ── */
+    document.querySelectorAll('.event-card:not(.sold-out)').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.event-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        state.event = card.dataset.id;
+
+        // Update GA price for this event
+        const ev = events[state.event];
+        if (ev) document.getElementById('gaPrice').textContent = '$' + ev.basePrice;
+
+        updateSummary();
+        document.getElementById('btn1').disabled = false;
+      });
+    });
+
+    document.getElementById('btn1').addEventListener('click', () => goStep(2));
+
+    /* ── STEP 2: TICKET TYPE ── */
+    document.querySelectorAll('.ticket-type').forEach(tt => {
+      tt.addEventListener('click', () => {
+        document.querySelectorAll('.ticket-type').forEach(t => t.classList.remove('selected'));
+        tt.classList.add('selected');
+        state.ticketType = { type: tt.dataset.type, name: tt.dataset.name, price: parseInt(tt.dataset.price) };
+        updateSummary();
+        document.getElementById('btn2').disabled = false;
+      });
+    });
+
+    // Qty
+    let qty = 1;
+    document.getElementById('qtyMinus').addEventListener('click', () => {
+      if (qty > 1) { qty--; state.qty = qty; document.getElementById('qtyVal').textContent = qty; updateSummary(); }
+    });
+    document.getElementById('qtyPlus').addEventListener('click', () => {
+      if (qty < 8) { qty++; state.qty = qty; document.getElementById('qtyVal').textContent = qty; updateSummary(); }
+    });
+
+    document.getElementById('btn2').addEventListener('click', () => goStep(3));
+
+    /* ── STEP 3: DETAILS ── */
+    document.getElementById('btn3').addEventListener('click', () => {
+      if (validateStep3()) goStep(4);
+    });
+
+    function validateStep3() {
+      let ok = true;
+      const fields = [
+        { id: 'firstName', errId: 'firstNameErr', check: v => v.trim().length > 0 },
+        { id: 'lastName',  errId: 'lastNameErr',  check: v => v.trim().length > 0 },
+        { id: 'email',     errId: 'emailErr',     check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
+        { id: 'phone',     errId: 'phoneErr',     check: v => v.trim().length > 4 },
+        { id: 'country',   errId: 'countryErr',   check: v => v !== '' },
+      ];
+
+      fields.forEach(f => {
+        const el = document.getElementById(f.id);
+        const err = document.getElementById(f.errId);
+        if (!f.check(el.value)) {
+          el.classList.add('error');
+          err.classList.add('show');
+          ok = false;
+        } else {
+          el.classList.remove('error');
+          err.classList.remove('show');
+        }
+      });
+
+      if (ok) {
+        state.firstName = document.getElementById('firstName').value;
+        state.lastName  = document.getElementById('lastName').value;
+        state.email     = document.getElementById('email').value;
+      }
+
+      return ok;
+    }
+
+    // Live clear errors
+    ['firstName','lastName','email','phone','country'].forEach(id => {
+      const el = document.getElementById(id);
+      const tag = el.tagName === 'SELECT' ? 'change' : 'input';
+      el.addEventListener(tag, () => {
+        el.classList.remove('error');
+        document.getElementById(id + 'Err').classList.remove('show');
+      });
+    });
+
+    /* ── STEP 4: PAYMENT ── */
+    // Card number formatting
+    document.getElementById('cardNum').addEventListener('input', function() {
+      let v = this.value.replace(/\D/g,'').substring(0,16);
+      this.value = v.replace(/(.{4})/g,'$1  ').trim();
+    });
+
+    // Expiry formatting
+    document.getElementById('cardExp').addEventListener('input', function() {
+      let v = this.value.replace(/\D/g,'').substring(0,4);
+      if (v.length > 2) v = v.substring(0,2) + ' / ' + v.substring(2);
+      this.value = v;
+    });
+
+    // CVV only digits
+    document.getElementById('cardCvv').addEventListener('input', function() {
+      this.value = this.value.replace(/\D/g,'').substring(0,4);
+    });
+
+    document.getElementById('btn4').addEventListener('click', () => {
+      if (!validateStep4()) return;
+
+      const terms = document.getElementById('termsCheck');
+      if (!terms.checked) {
+        alert('Please agree to the Terms & Conditions to continue.');
+        return;
+      }
+
+      // Simulate payment processing
+      const btn = document.getElementById('btn4');
+      btn.classList.add('loading');
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.classList.remove('loading');
+        btn.disabled = false;
+        showConfirmation();
+      }, 2200);
+    });
+
+    function validateStep4() {
+      let ok = true;
+
+      const cardName = document.getElementById('cardName').value;
+      const cardNum  = document.getElementById('cardNum').value.replace(/\s/g,'');
+      const cardExp  = document.getElementById('cardExp').value;
+      const cardCvv  = document.getElementById('cardCvv').value;
+
+      if (!cardName.trim()) {
+        document.getElementById('cardName').classList.add('error');
+        document.getElementById('cardNameErr').classList.add('show');
+        ok = false;
+      } else {
+        document.getElementById('cardName').classList.remove('error');
+        document.getElementById('cardNameErr').classList.remove('show');
+      }
+
+      if (cardNum.length < 16) {
+        document.getElementById('cardNum').classList.add('error');
+        document.getElementById('cardNumErr').classList.add('show');
+        ok = false;
+      } else {
+        document.getElementById('cardNum').classList.remove('error');
+        document.getElementById('cardNumErr').classList.remove('show');
+      }
+
+      if (!/^\d{2}\s?\/\s?\d{2}$/.test(cardExp.trim())) {
+        document.getElementById('cardExp').classList.add('error');
+        document.getElementById('cardExpErr').classList.add('show');
+        ok = false;
+      } else {
+        document.getElementById('cardExp').classList.remove('error');
+        document.getElementById('cardExpErr').classList.remove('show');
+      }
+
+      if (cardCvv.length < 3) {
+        document.getElementById('cardCvv').classList.add('error');
+        document.getElementById('cardCvvErr').classList.add('show');
+        ok = false;
+      } else {
+        document.getElementById('cardCvv').classList.remove('error');
+        document.getElementById('cardCvvErr').classList.remove('show');
+      }
+
+      return ok;
+    }
+
+    /* ── SUMMARY ── */
+    function updateSummary() {
+      const ev = state.event ? events[state.event] : null;
+      const tt = state.ticketType;
+
+      // Event info
+      const summEvt = document.getElementById('summaryEvent');
+      if (ev) {
+        summEvt.innerHTML = `
+          <div class="summary-event-date">${ev.date}</div>
+          <div class="summary-event-venue">${ev.venue}</div>
+          <div class="summary-event-loc">${ev.location}</div>
+        `;
+      } else {
+        summEvt.innerHTML = '<div class="summary-empty">Select an event to begin.</div>';
+      }
+
+      // Lines
+      const lines = document.getElementById('summaryLines');
+      if (tt && ev) {
+        const unitPrice = ev.basePrice + ticketPrices[tt.type];
+        const subtotal  = unitPrice * state.qty;
+        const fee       = Math.round(subtotal * 0.08);
+        const total     = subtotal + fee;
+
+        lines.innerHTML = `
+          <div class="summary-line"><span class="summary-line-label">${tt.name}</span><span class="summary-line-val">$${unitPrice}</span></div>
+          <div class="summary-line"><span class="summary-line-label">× ${state.qty} ticket${state.qty > 1 ? 's' : ''}</span><span class="summary-line-val">$${subtotal}</span></div>
+          <div class="summary-line"><span class="summary-line-label">Service Fee (8%)</span><span class="summary-line-val">$${fee}</span></div>
+        `;
+
+        document.getElementById('summaryTotal').textContent = '$' + total.toLocaleString();
+        document.getElementById('payBtnText').innerHTML = `Complete Purchase — $${total.toLocaleString()} <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`;
+      } else {
+        lines.innerHTML = '';
+        document.getElementById('summaryTotal').textContent = '—';
+      }
+    }
+
+    /* ── CONFIRMATION ── */
+    function showConfirmation() {
+      // Hide all steps and sidebar
+      for (let i = 1; i <= 4; i++) {
+        document.getElementById('step' + i).classList.remove('active');
+      }
+      document.getElementById('sidebar').style.display = 'none';
+
+      // Collapse grid
+      document.getElementById('mainGrid').style.gridTemplateColumns = '1fr';
+
+      // Progress all done
+      for (let i = 1; i <= 4; i++) {
+        const el = document.getElementById('stepEl' + i);
+        el.classList.remove('active');
+        el.classList.add('done');
+      }
+      for (let i = 1; i <= 3; i++) {
+        document.getElementById('conn' + i).classList.add('done');
+      }
+
+      // Ref number
+      const ref = 'KR-' + Math.floor(100000 + Math.random() * 900000);
+      document.getElementById('confirmRef').textContent = ref;
+
+      // Details
+      const ev = events[state.event];
+      const tt = state.ticketType;
+      const unitPrice = ev.basePrice + ticketPrices[tt.type];
+      const total = Math.round((unitPrice * state.qty) * 1.08);
+
+      document.getElementById('confirmDetails').innerHTML = `
+        <div class="confirm-detail"><div class="confirm-detail-label">Event</div><div class="confirm-detail-val">${ev.venue}</div></div>
+        <div class="confirm-detail"><div class="confirm-detail-label">Date</div><div class="confirm-detail-val">${ev.date}</div></div>
+        <div class="confirm-detail"><div class="confirm-detail-label">Ticket Type</div><div class="confirm-detail-val">${tt.name}</div></div>
+        <div class="confirm-detail"><div class="confirm-detail-label">Quantity</div><div class="confirm-detail-val">${state.qty} × Ticket${state.qty > 1 ? 's' : ''}</div></div>
+        <div class="confirm-detail"><div class="confirm-detail-label">Name</div><div class="confirm-detail-val">${state.firstName} ${state.lastName}</div></div>
+        <div class="confirm-detail"><div class="confirm-detail-label">Total Paid</div><div class="confirm-detail-val">$${total.toLocaleString()}</div></div>
+      `;
+
+      document.getElementById('confirmPanel').classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Checkbox visual toggle
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      cb.addEventListener('change', function() {
+        const box = this.nextElementSibling;
+        // The SVG check is always there; just toggle opacity via CSS
+      });
+    });
+  </script>
+
+</body>
+</html>
